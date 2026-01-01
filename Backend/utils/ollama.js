@@ -6,7 +6,7 @@ dotenv.config({ path: "./.env" });
 const getAPIresponse = async (command) => {
   try {
     const apiURL = process.env.GEMINI_API_URI;
-    console.log(apiURL);
+    // console.log(apiURL);
     const response = await axios.post(
       apiURL,
       {

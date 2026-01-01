@@ -16,20 +16,22 @@ app.use(express.json());
 
 app.use("/api", chatRoutes);
 
-app.listen(PORT, () => {
-  console.log("Zeni backend running on port 5000")
-  connectDB();
-});
-
-const connectDB = async () => {
+const startServer = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URI);
     console.log("MongoDB connected");
+
+    app.listen(PORT, () => {
+      console.log(`Zeni backend running on port ${PORT}`);
+    });
   } catch (error) {
-    
-    console.error("MongoDB connection error:", error);
+    console.error("MongoDB connection failed:", error);
+    process.exit(1);
   }
-}
+};
+
+startServer();
+
 // app.post("/api/chat", async (req, res) => {
   
 // });
